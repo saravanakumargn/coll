@@ -46,27 +46,16 @@ class College {
     /**
      * @var text $content
      *
-     * @ORM\Column(name="address_ta", type="string", length=100, nullable=false)
-     * @GRID\Column(field="addressTa", size=150, title="Address Tamil")
+     * @ORM\Column(name="full_address", type="string", length=200, nullable=false)
+     * @GRID\Column(field="fullAddress", size=150, title="Address English")
      */
-    private $addressTa;    
+    private $fullAddress;
     /**
-     * @var text $content
+     * @var text $district
      *
-     * @ORM\Column(name="address_en", type="string", length=100, nullable=false)
-     * @GRID\Column(field="addressEn", size=150, title="Address English")
+     * @ORM\Column(name="district", type="string", length=64, nullable=true)
      */
-    private $addressEn;
-    
-    /**
-     * @var text $districtId
-     *
-     * @ORM\ManyToOne(targetEntity="District", inversedBy="list_items")
-     * @ORM\JoinColumn(name="district_id", referencedColumnName="id")
-     * @GRID\Column(field="districtId.districtNameEn", size=150, title="District")
-     */
-    private $districtId;  
-
+    private $district;       
     /**
      * @var text $viewCount
      *
@@ -96,37 +85,19 @@ class College {
      *
      * @ORM\Column(name="website_name", type="string", length=60, nullable=true)
      */
-    private $websiteName;    
-    /**
-     * @var text $content
-     *
-     * @ORM\Column(name="hq_distance", type="integer", length=3, nullable=true)
-     */
-    private $hqDistance;    
-    /**
-     * @var text $content
-     *
-     * @ORM\Column(name="railway_near", type="string", length=60, nullable=true)
-     */
-    private $railwayNear;       
-    /**
-     * @var text $content
-     *
-     * @ORM\Column(name="railway_distance", type="integer", length=3, nullable=true)
-     */
-    private $railwayDistance;    
+    private $websiteName;  
     
     /**
      * @var string $lat
      *
-     * @ORM\Column(name="lat", type="decimal", scale=6, nullable=true)
+     * @ORM\Column(name="lat", type="decimal", scale=32, nullable=true)
      */
     private $lat;
 
     /**
      * @var string $lng
      *
-     * @ORM\Column(name="lng", type="decimal", scale=6, nullable=true)
+     * @ORM\Column(name="lng", type="decimal", scale=32, nullable=true)
      */
     private $lng;      
     
@@ -186,4 +157,5 @@ class College {
         // update the modified time
         $this->setModifiedon(new \DateTime());
     }    
+
 }

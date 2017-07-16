@@ -13,7 +13,7 @@ class CollegeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('collegeName')->add('tneaCode')->add('pageUrl')->add('addressTa')->add('addressEn')->add('pincode')->add('phoneNo')->add('faxNo')->add('email_id')->add('websiteName')->add('hqDistance')->add('railwayNear')->add('railwayDistance')->add('lat')->add('lng')->add('isActive')->add('isBlocked')->add('modifiedon')->add('createdon')->add('viewed')->add('districtId');
+        //$builder->add('collegeName')->add('tneaCode')->add('pageUrl')->add('fullAddress')->add('pincode')->add('phoneNo')->add('faxNo')->add('email_id')->add('websiteName')->add('hqDistance')->add('railwayNear')->add('railwayDistance')->add('lat')->add('lng')->add('isActive')->add('isBlocked')->add('modifiedon')->add('createdon')->add('viewed')->add('districtId');
     }
     
     /**

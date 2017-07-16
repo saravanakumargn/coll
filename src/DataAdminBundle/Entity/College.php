@@ -46,27 +46,16 @@ class College {
     /**
      * @var text $content
      *
-     * @ORM\Column(name="address_ta", type="string", length=100, nullable=false)
-     * @GRID\Column(field="addressTa", size=150, title="Address Tamil")
+     * @ORM\Column(name="full_address", type="string", length=200, nullable=false)
+     * @GRID\Column(field="fullAddress", size=150, title="Address English")
      */
-    private $addressTa;    
+    private $fullAddress;
     /**
-     * @var text $content
+     * @var text $district
      *
-     * @ORM\Column(name="address_en", type="string", length=100, nullable=false)
-     * @GRID\Column(field="addressEn", size=150, title="Address English")
+     * @ORM\Column(name="district", type="string", length=64, nullable=true)
      */
-    private $addressEn;
-    
-    /**
-     * @var text $districtId
-     *
-     * @ORM\ManyToOne(targetEntity="District", inversedBy="list_items")
-     * @ORM\JoinColumn(name="district_id", referencedColumnName="id")
-     * @GRID\Column(field="districtId.districtNameEn", size=150, title="District")
-     */
-    private $districtId;  
-
+    private $district;       
     /**
      * @var text $viewCount
      *
@@ -96,37 +85,19 @@ class College {
      *
      * @ORM\Column(name="website_name", type="string", length=60, nullable=true)
      */
-    private $websiteName;    
-    /**
-     * @var text $content
-     *
-     * @ORM\Column(name="hq_distance", type="integer", length=3, nullable=true)
-     */
-    private $hqDistance;    
-    /**
-     * @var text $content
-     *
-     * @ORM\Column(name="railway_near", type="string", length=60, nullable=true)
-     */
-    private $railwayNear;       
-    /**
-     * @var text $content
-     *
-     * @ORM\Column(name="railway_distance", type="integer", length=3, nullable=true)
-     */
-    private $railwayDistance;    
+    private $websiteName;  
     
     /**
      * @var string $lat
      *
-     * @ORM\Column(name="lat", type="decimal", scale=6, nullable=true)
+     * @ORM\Column(name="lat", type="decimal", precision=26, scale=4, nullable=true)
      */
     private $lat;
 
     /**
      * @var string $lng
      *
-     * @ORM\Column(name="lng", type="decimal", scale=6, nullable=true)
+     * @ORM\Column(name="lng", type="decimal", precision=26, scale=4, nullable=true)
      */
     private $lng;      
     
@@ -186,6 +157,7 @@ class College {
         // update the modified time
         $this->setModifiedon(new \DateTime());
     }    
+
 
     /**
      * Get id
@@ -254,8 +226,7 @@ class College {
      */
     public function setPageUrl($pageUrl)
     {
-//        $this->pageUrl = $pageUrl;
-        $this->pageUrl = $this->seoUrl($pageUrl);
+        $this->pageUrl = $pageUrl;
 
         return $this;
     }
@@ -271,51 +242,51 @@ class College {
     }
 
     /**
-     * Set addressTa
+     * Set fullAddress
      *
-     * @param string $addressTa
+     * @param string $fullAddress
      *
      * @return College
      */
-    public function setAddressTa($addressTa)
+    public function setFullAddress($fullAddress)
     {
-        $this->addressTa = $addressTa;
+        $this->fullAddress = $fullAddress;
 
         return $this;
     }
 
     /**
-     * Get addressTa
+     * Get fullAddress
      *
      * @return string
      */
-    public function getAddressTa()
+    public function getFullAddress()
     {
-        return $this->addressTa;
+        return $this->fullAddress;
     }
 
     /**
-     * Set addressEn
+     * Set district
      *
-     * @param string $addressEn
+     * @param string $district
      *
      * @return College
      */
-    public function setAddressEn($addressEn)
+    public function setDistrict($district)
     {
-        $this->addressEn = $addressEn;
+        $this->district = $district;
 
         return $this;
     }
 
     /**
-     * Get addressEn
+     * Get district
      *
      * @return string
      */
-    public function getAddressEn()
+    public function getDistrict()
     {
-        return $this->addressEn;
+        return $this->district;
     }
 
     /**
@@ -436,78 +407,6 @@ class College {
     public function getWebsiteName()
     {
         return $this->websiteName;
-    }
-
-    /**
-     * Set hqDistance
-     *
-     * @param integer $hqDistance
-     *
-     * @return College
-     */
-    public function setHqDistance($hqDistance)
-    {
-        $this->hqDistance = $hqDistance;
-
-        return $this;
-    }
-
-    /**
-     * Get hqDistance
-     *
-     * @return integer
-     */
-    public function getHqDistance()
-    {
-        return $this->hqDistance;
-    }
-
-    /**
-     * Set railwayNear
-     *
-     * @param string $railwayNear
-     *
-     * @return College
-     */
-    public function setRailwayNear($railwayNear)
-    {
-        $this->railwayNear = $railwayNear;
-
-        return $this;
-    }
-
-    /**
-     * Get railwayNear
-     *
-     * @return string
-     */
-    public function getRailwayNear()
-    {
-        return $this->railwayNear;
-    }
-
-    /**
-     * Set railwayDistance
-     *
-     * @param integer $railwayDistance
-     *
-     * @return College
-     */
-    public function setRailwayDistance($railwayDistance)
-    {
-        $this->railwayDistance = $railwayDistance;
-
-        return $this;
-    }
-
-    /**
-     * Get railwayDistance
-     *
-     * @return integer
-     */
-    public function getRailwayDistance()
-    {
-        return $this->railwayDistance;
     }
 
     /**
@@ -676,29 +575,5 @@ class College {
     public function getViewed()
     {
         return $this->viewed;
-    }
-
-    /**
-     * Set districtId
-     *
-     * @param \DataAdminBundle\Entity\District $districtId
-     *
-     * @return College
-     */
-    public function setDistrictId(\DataAdminBundle\Entity\District $districtId = null)
-    {
-        $this->districtId = $districtId;
-
-        return $this;
-    }
-
-    /**
-     * Get districtId
-     *
-     * @return \DataAdminBundle\Entity\District
-     */
-    public function getDistrictId()
-    {
-        return $this->districtId;
     }
 }
