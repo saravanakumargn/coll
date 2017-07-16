@@ -1,0 +1,24 @@
+# This file is auto-generated during the composer install
+
+parameters:
+    app.lastupdated: build_value_ant_LAST_UPDATED      #last updatted value display in top header
+    #this value for adding assets arguments to avoid cache issue
+    app.current_version: dev_value_ant_CURRENT_TIME   # change this to current version of application
+#    app.version: dev_value_ant_VERSION-APP-DISPLAY    # this value for display footer values.
+
+    #Facebook - test app
+    facebook_app_id: "1518647865099556"
+    facebook_app_secret: "2b173188b97eb7366ff1d581b6c10e45"
+    google_app_id: 225222711932-a1autj0fe6ndgpgij234f1h9e9l2uoi2.apps.googleusercontent.com
+    google_app_secret: VlDC83N_Tw5t8x8oTSNOC4Go
+    linkedin_app_id: 77r2t2gg9xhwja
+    linkedin_app_secret: RhpeG6Seuft50pM1
+    
+# Pagination limit values - Dev
+    paginate_limit: 25
+    paginate_review_limit: %paginate_limit%
+    paginate_directory_limit: %paginate_limit%
+    
+    database_name: gobiinfo_page_prod_db
+    database_user: info_page_user
+    database_password: TBIT6Q19T1E7    

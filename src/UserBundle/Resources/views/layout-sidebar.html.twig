@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="container gw-padding-top-btm">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <div class="list-group">
+                    <a href="{{ path('fos_user_profile_show') }}" class="list-group-item list-group-side {% if app.request.attributes.get('_route') == 'fos_user_profile_show' %}active{% endif %}">
+                        Profile view
+                    </a>
+                    <a href="{{ path('fos_user_profile_edit') }}" class="list-group-item list-group-side {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}">
+                        Profile edit
+                    </a>
+                    <a href="{{ path('fos_user_change_password') }}" class="list-group-item list-group-side {% if app.request.attributes.get('_route') == 'fos_user_change_password' %}active{% endif %}">
+                        Change Password
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">{{ block('fos_user_content')}}</div>
+        </div>
+
+
+        {#<div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                
+            </div>
+        </div>#}
+    </div>
+{% endblock %}

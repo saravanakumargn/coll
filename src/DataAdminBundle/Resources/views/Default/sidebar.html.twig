@@ -1,0 +1,75 @@
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="{% if app.request.attributes.get('_route') == 'admin'%}active{% endif %}">
+                <a href="{{ path('admin') }}">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>    
+ 
+{#            **********  University Disabled   **********   #}
+            {#<li class="{% if app.request.attributes.get('_route') matches '^university^'%}active{% endif %} treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>University</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{% if app.request.attributes.get('_route') == 'university_index' %}active{% endif %}">
+                        <a href="{{ path('university_index') }}">List</a>
+                    </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'university_new' %}active{% endif %}">
+                        <a href="{{ path('university_new') }}">Add New</a>
+                    </li>
+                </ul>
+            </li> #}  
+            <li class="{% if app.request.attributes.get('_route') matches '^college^'%}active{% endif %} treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>College</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{% if app.request.attributes.get('_route') == 'college_index' %}active{% endif %}">
+                        <a href="{{ path('college_index') }}">List</a>
+                    </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'college_new' %}active{% endif %}">
+                        <a href="{{ path('college_new') }}">Add New</a>
+                    </li>
+                </ul>
+            </li>             
+            <li class="{% if app.request.attributes.get('_route') matches '^branch^'%}active{% endif %} treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Branch</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{% if app.request.attributes.get('_route') == 'branch_index' %}active{% endif %}">
+                        <a href="{{ path('branch_index') }}">List</a>
+                    </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'branch_new' %}active{% endif %}">
+                        <a href="{{ path('branch_new') }}">Add New</a>
+                    </li>
+                </ul>
+            </li>              
+            <li class="{% if app.request.attributes.get('_route') matches '^district^'%}active{% endif %} treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>District</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{% if app.request.attributes.get('_route') == 'district_index' %}active{% endif %}">
+                        <a href="{{ path('district_index') }}">List</a>
+                    </li>
+                    <li class="{% if app.request.attributes.get('_route') == 'district_new' %}active{% endif %}">
+                        <a href="{{ path('district_new') }}">Add New</a>
+                    </li>
+                </ul>
+            </li>             
+        </ul>
+    </section>
+</aside>

@@ -1,0 +1,32 @@
+data_admin_college:
+    resource: "@DataAdminBundle/Controller/CollegeController.php"
+    type:     annotation
+
+data_admin_branch:
+    resource: "@DataAdminBundle/Controller/BranchController.php"
+    type:     annotation
+
+data_admin_university:
+    resource: "@DataAdminBundle/Controller/UniversityController.php"
+    type:     annotation
+
+data_admin_district:
+    resource: "@DataAdminBundle/Controller/DistrictController.php"
+    type:     annotation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+user_bundle:
+  resource: "@UserBundle/Resources/config/routing.yml"
+  
+data_admin:
+    resource: "@DataAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /data-admin  
+    
+#admin_app_rest : 
+#  type : rest 
+#  resource : "@DataAdminBundle/Resources/config/routing_rest.yml"
+#  prefix : /api    

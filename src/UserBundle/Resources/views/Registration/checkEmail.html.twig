@@ -1,0 +1,15 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block full_body %}
+    <div class="container">
+        <h3>Confirmation</h3>
+        <div class="alert alert-info">
+
+    <p>Thank you for registration. An email has been sent to <span class="label label-info">{{user.email}}</span> Please check your email, It contains an activation link you must click to activate your account.</p>
+
+
+    {#    <div class="alert alert-info"><i class="icon-info-sign"></i> {{ 'registration.check_email'|trans({'%email%': user.email}) }}</div>#}
+    </div>
+    </div>
+{% endblock %}

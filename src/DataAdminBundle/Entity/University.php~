@@ -1,0 +1,41 @@
+<?php
+
+namespace DataAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use APY\DataGridBundle\Grid\Mapping as GRID;
+
+// php bin/console doctrine:generate:entities DataAdminBundle/Entity/University
+
+/**
+ * DataAdminBundle\Entity\University
+ *
+ * @ORM\Table(name="university")
+ * @ORM\Entity
+ * 
+ */
+class University {
+
+    /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $id;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="university_name_ta", type="string", length=100, nullable=false)
+     * @GRID\Column(field="universityNameTa", size=150, title="University Name Tamil")
+     */
+    private $universityNameTa;    
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="district_name_en", type="string", length=100, nullable=false)
+     * @GRID\Column(field="districtNameEn", size=150, title="University Name English")
+     */
+    private $universityNameEn;
+
+}

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  <!-- Font Awesome -->
+<script src="https://use.fontawesome.com/b24d887090.js"></script>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/skin-blue.min.css">
+<style>
+.grid table{width:100%}.grid td,.grid th{border:1px solid #D4E0EE;padding:3px 7px 2px}.grid th{background-color:#E6EDF5;vertical-align:top}.grid th a{color:#4F76A3;text-decoration:none}.grid th a.grid-reset{margin-left:5px;font-weight:400}.grid tr.even{background-color:#FCFDFE}.grid tr.odd{background-color:#F7F9FC}.grid_footer,.grid_header{margin:5px 0}th div{height:10px;width:20px;float:right;padding-top:4px}.grid .grid_boolean_false,.grid .grid_boolean_true{display:inline-block;text-indent:16px;width:16px;overflow:hidden}.grid th div.sort_up{background:url(data:image/gif;base64,R0lGODlhFwAKAIABAJCQkO/v7yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAAEALAAAAAAXAAoAAAIajI+py+0GwGsxTmVDvlqe/YCQ52wmyaXqUQAAOw==) bottom left no-repeat}.grid th div.sort_down{background:url(data:image/gif;base64,R0lGODlhFwAKAHAAACH5BAEAAAIALAAAAAAXAAoAgQAAAJCQkAAAAAAAAAIalI+py60RDpTRiZmwvdXozXkdKH6keKZqUwAAOw==) bottom left no-repeat}.grid .grid_boolean_true{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACl0lEQVR42q2T60uTYRiH/Tv2bnttAwlkRCGChFD7FCQSm2ZDMQ/L0nRnj7TNGDbTooychzFSSssstdqc8zB1anNrSpm47FVCzH3pQLVhdLBfzztoJlifvOEHz4fnuu7nGBe311XgOyLMnTmsz/akMBljB8OSEVFY4kpkJM5Efbp9v/C/cJ43VSrzJId0HhluBy3oW+mKpnOpGSWuExD30iFxDy3dFSZdpZkTSZHr80Y41/phe3UDpvnKaNixY60PjbNVOGTjRZJtvJ2SHE+KINOdtMHC7MSaQBkq/CXQzJ6DjqScpNp3HvY3D3B5ugIiC3dDdJMriAlk7iSDajwr2pmFWVDlPQPFTCEU0wVQTxfCvT4Ig1cJB5Hk9hxDwjWuISbIGBExncFmWINNqPAVQ/lUTsB8KKdIPPmYeOsCW6HIOtpeNMI234j4ei4TExy3J2w+Wr2L2oAGWm8RWckAlj4uQDVZiPH1oSj8c+sH2p5fgWGyGH3BTvCN1GZMIH5Ib/avdMPoV6HWr8Xnb5+i0Iev72KwZa4ealc29O6z6A92gF/zt6CHZm4tNKF98Sp0U3KYfdWIfP8Shbd+bcHy7BLKnFnQEEFLoA7tXjPoKmp7C6l3+Ab5QBrsq/dRPSmH2n0adTPlWH6/iLa5BpQOnoTCcQo6Zw7sr7uRbj0KupLaPsRkK09wgFyN2aPBY+YeKkfzoB3OgWpIBqWDDQtn48lyF4xDxeCrORu0mhLseAuJTVxpfAMVMbnL4CCS1oAZ+tEiXBiWo5VswU5gvbMIvFJOhMC7v8Z9DVwpbaJCkg4x2v1m9L60onfBCovXhLSWVPAVnBCt+gf8p+iLXCFtoPR0DcXwtZwwX8UJk44MiZ4upYR7/nt/A+w9sdKFchsrAAAAAElFTkSuQmCC) bottom left no-repeat}.grid .grid_boolean_false{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACSElEQVR42q2Ty0vUURTHv/5SJ1SmUaGckUYdG5FyVdAicGMkFAXBtEl8gJseIP0FEVEtbNNiFm0iMMUgGKhVIUj0oqKFQ40N2TwwdewxOik6zcy953tbmD/HxFV9d/dwz+f7PXAO8I8q+bugb1xspjFdhuwlWUcSJL+SvEfhaPXgcHxbQOH6hYChCa6WlLvLm/eh1OkEAKjlJWSjUVjZpXlSBvbcehDaAshfOx8w5FB+t7eyosUPSU2DqWkAgOX2wvI0YPljFLmpD6sU6fPefhSyAbmr53wkXxTqvJ7KlhYUXo0BACou3wEArFzpB2hQ3t6JpcgkVqITKSHb/XefJCwAENHdWcux0WwMDI09GjUh2iA7/hjO1v0wVbUerVQ3AFgAoLXucfj9kNkkDA0oBkZzE4BKIAUin4hjV2sblFI9xYD6MpcLeiYJo2k7rksKhKi1ei4WR5mrBlrp+g2A0jBi7MZ1RzUV2RhB/YEIASG0VihKoOby6UVY7gY7qiji18txrDy8b7tTEaV7G5FNp6GVnitOMPwz8h47PI32Z1GEs/8Sqk6fBRUhmhAhHI0+fA+/g9Z62AYopUYKC6lUZjKCio7jNmQxeBMLwUGIrL1dJ07iRySMzMznlNZ6ZNMiTXZ3BCgy5DpwuLK6tQ25ZAK5WBzGGDiafHA0+ZCOhPHl9dgqyb6jTz+FtqzyxJkjASGDO2s87tq2g3C4qmEMkMss4tvEW2RmY/MkB449mwpte0xvTh1qJtlFYS8pm4+JHO18Hovjf+o3Xg+XX4ZLBPIAAAAASUVORK5CYII=) bottom left no-repeat}.grid .align-left{text-align:left}.grid .align-center{text-align:center}.grid .align-right{text-align:right}.grid .grid-filter-operator select{width:70px}.grid .grid-filter-input-query input,.grid .grid-filter-select-query select{width:50px}.grid .grid-filter-input-query-to,.grid .grid-filter-select-query-to{margin-left:77px;display:block}.grid-search{border:1px solid #D4E0EE;padding:10px}.grid-search label{width:200px;display:inline-block;text-align:right}.grid-search .grid-filter-input-query input,.grid-search select{width:150px}
+</style>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+{% block react_block %}
+                {% endblock %}
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+                {% embed "DataAdminBundle:Default:header.html.twig" %}
+            {% endembed %}
+            {% embed "DataAdminBundle:Default:sidebar.html.twig" %}
+            {% endembed %}
+
+            <div class="content-wrapper">
+                {% block body %}
+                {% endblock %}
+            </div>
+            
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+</body>
+</html>

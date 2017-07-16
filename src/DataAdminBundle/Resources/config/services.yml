@@ -1,0 +1,4 @@
+services:
+#    data_admin.example:
+#        class: DataAdminBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

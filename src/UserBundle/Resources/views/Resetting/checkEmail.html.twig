@@ -1,0 +1,9 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div class="container">
+    <div class="alert alert-info">
+        <i class="icon-info-sign"></i> An email has been sent to {{email}}. It contains a link you must click to reset your password.</div>
+        </div>
+{% endblock %}

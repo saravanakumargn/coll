@@ -1,0 +1,126 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block fos_user_content %}
+
+    {#<div class="gw-padding-top-btm-sm">
+        <h3>Log in to MyWedding</h3>
+        <div>
+            Don't yet have a MyWedding account? <a href="{{ path('fos_user_registration_register') }}"><b>Create one here.</b></a>
+        </div>
+    </div>#}
+    <div class="row gw-padding-btm">
+        <div class="col-md-6 col-sm-6">
+            {#<h3 class="p-heading-03">Log in using social media</h3>
+            <p>
+            {% embed "UserBundle:Common:user-privacy-message.html.twig" %}
+            {% endembed %}
+            </p>#}
+            {#<ul class="list-inline">
+                <li>
+                    <a class="btn btn-social btn-google"
+                       href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}" alt="Sign in with Google">
+                        <i class="fa fa-google"></i> Google
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-social btn-facebook"
+                       href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" alt="Sign in with Facebook">
+                        <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                </li>
+            </ul>#}
+        </div>
+        <div class="col-md-6 col-sm-6">
+            {#<h3 class="p-heading-03">Or use your MyWedding account</h3>#}
+            <h3 class="p-heading-03">Login</h3>
+            <p>
+                {% embed "UserBundle:Common:user-privacy-message.html.twig" %}
+            {% endembed %}
+            </p>
+            <div class="">
+                {% if error %}
+                    <div class="alert alert-danger">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        {% if app.environment == 'dev'%}
+                            {{ error|trans }}
+                        {% else %}
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        {% endif%}
+                    </div>
+                {% endif %}
+                <form action="{{ path("fos_user_security_check") }}" method="post"
+                      class="form-signin"
+                      id="logForm">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="username" name="_username" required="required" placeholder="Email Address"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" id="_submit" name="_submit" class="btn btn-primary">Log In</button>
+                        {#<a href="{{ path('fos_user_resetting_request') }}" class="btn btn-link">Forgot your password?</a>#}
+                    </div>
+                    <a href="{{ path('fos_user_resetting_request') }}" class="gw-link-more" data-capturescreen="forgotPassword">I have forgotten my password</a>
+                    {% if app.request.get('_route') != app.request.headers.get('referer') %}
+                        <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    {#    <div class="spacer-height-sz-2"></div>#}
+
+    {#<div class="form-group">#}
+    {#                <span class="input-group-addon"><i class="fa fa-at"></i></span>#}
+    {#                <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Email Address" autofocus/>                                      #}
+
+    {#                <span class="input-group-addon"><i class="fa fa-key"></i></span>#}
+    {#                <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="Password"/>#}
+    {#                <button type="submit" id="_submit" name="_submit" class="btn btn-primary btn-block">Sign In</button>#}
+    {#            </div>#}
+    {#<div class="form-group">
+        <label for="inputEmail3" class="col-sm-3 control-label required">{{ 'form.email' | trans }}</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required"/>
+        </div>
+    </div>#}
+    {#<div class="form-group">
+        <label for="inputPassword3" class="col-sm-3 control-label required">{{ 'form.password' | trans }}</label>
+        <div class="col-sm-8">
+            <input class="form-control" type="password" id="password" name="_password" required="required"/>
+        </div>
+    </div>#}
+    {#            <div class="spacer-height-sz-1"></div>#}
+    {#<div class="form-group">
+        <div class="row text-center">
+            <button type="submit" id="_submit" name="_submit" class="btn btn-primary">Sign In</button><a href="{{ path('fos_user_resetting_request') }}" class="btn btn-link">Forgot your password?</a>
+        </div>
+    </div>#}
+    {#<div class="form-group">
+        <div class="row text-center">
+            <a href="{{ path('fos_user_registration_register') }}">Dont have a Panappai account? Click here to Free Sign up.</a>
+        </div>
+    </div>#}
+    {#</form>#}
+
+    {#<div class="clearfix"></div>#}
+    {#<hr/> #}
+
+    {#<div class="text-center">
+        <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-link">Forgot your password?</a>
+    </div>#}
+    {#<div class="text-center">
+        <a href="{{ path('fos_user_registration_register') }}">Free Sign up</a>
+    </div>  #}
+    {#<div class="text-center">#}
+    {#Dont have a Panappai account? <a href="{{ path('fos_user_registration_register') }}">Sign Up Here</a>#}
+    {#</div>    #}
+
+
+{% endblock %}
+
+{#{% endblock fos_user_content %}#}

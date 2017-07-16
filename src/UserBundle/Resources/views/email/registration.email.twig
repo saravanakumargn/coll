@@ -1,0 +1,15 @@
+{% block subject %}Welcome Gladwedding.com{% endblock %}
+
+{#{% block body_html %}#}
+{% block body_text %}
+{% autoescape false %}
+Hello {{ user.email }} !
+
+To finish activating your account - please visit the following link
+
+{{ confirmationUrl }}
+
+Greetings,
+Gladwedding.com team
+{% endautoescape %}
+{% endblock %}

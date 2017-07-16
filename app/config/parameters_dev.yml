@@ -1,0 +1,26 @@
+# This file is auto-generated during the composer install
+
+parameters:
+#    Database config
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: mystudies
+    database_user: root
+    database_password: root    
+
+    app.lastupdated: 23-Jan-2016 05:37 PM      #last updatted value display in top header
+    #this value for adding assets arguments to avoid cache issue
+    app.current_version: 1453550828741   # change this to current version of application
+#    app.version: -v pre-alpha 0.1 (dev)    # this value for display footer values.
+
+    #Facebook - test app
+    facebook_app_id: "1525600894422253"
+    facebook_app_secret: "b54fdeb0c828737b3a76240b74b6f3c0"
+    google_app_id: "895707978143-csfe9tmpf85sgvf0fvlh2htams7k3l6l.apps.googleusercontent.com"
+    google_app_secret: "05kpLoGbVWEuGlszcQx1hbcb"
+    linkedin_app_id: 77r2t2gg9xhwja
+    linkedin_app_secret: RhpeG6Seuft50pM1    
+    
+    paginate_limit: 10
+    paginate_review_limit: %paginate_limit%
+    paginate_directory_limit: %paginate_limit%    

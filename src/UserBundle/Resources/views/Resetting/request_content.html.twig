@@ -1,0 +1,26 @@
+<h3>Reset Password</h3>
+<p>To reset your password, please type in the email address that you use for your Gladwedding account.</p>
+<div class="row gw-padding-btm">
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="form-horizontal">
+
+        {% if invalid_username is defined %}
+            <div class="alert alert-danger"><i class="icon-warning-sign"></i> The email address {{invalid_username}} does not exist</div>
+        {% endif %}
+        
+        
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-5 control-label">Email address <i class="p-label-required">*</i></label>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control" id="username" name="username" required="required" placeholder="Email address" autocomplete="off" autofocus/>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <div class="row text-center">
+                <md-button type="submit" class="md-raised md-primary">Continue</md-button>
+{#                <input type="submit" value="Continue" class="btn btn-primary"/>#}
+            </div>
+        </div>
+    </form>
+</div>

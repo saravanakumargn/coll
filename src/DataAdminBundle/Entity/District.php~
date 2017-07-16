@@ -1,0 +1,41 @@
+<?php
+
+namespace DataAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use APY\DataGridBundle\Grid\Mapping as GRID;
+
+// php bin/console doctrine:generate:entities DataAdminBundle/Entity/District
+
+/**
+ * DataAdminBundle\Entity\District
+ *
+ * @ORM\Table(name="district")
+ * @ORM\Entity
+ * 
+ */
+class District {
+
+    /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $id;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="district_name_ta", type="string", length=100, nullable=false)
+     * @GRID\Column(field="districtNameTa", size=150, title="District Name Tamil")
+     */
+    private $districtNameTa;    
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="district_name_en", type="string", length=100, nullable=false)
+     * @GRID\Column(field="districtNameEn", size=150, title="District Name English")
+     */
+    private $districtNameEn;
+
+}

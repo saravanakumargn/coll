@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Colleges list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Collegename</th>
+                <th>Tneacode</th>
+                <th>Pageurl</th>
+                <th>Addressta</th>
+                <th>Addressen</th>
+                <th>Pincode</th>
+                <th>Phoneno</th>
+                <th>Faxno</th>
+                <th>Email_id</th>
+                <th>Websitename</th>
+                <th>Hqdistance</th>
+                <th>Railwaynear</th>
+                <th>Railwaydistance</th>
+                <th>Lat</th>
+                <th>Lng</th>
+                <th>Isactive</th>
+                <th>Isblocked</th>
+                <th>Modifiedon</th>
+                <th>Createdon</th>
+                <th>Viewed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for college in colleges %}
+            <tr>
+                <td><a href="{{ path('college_show', { 'id': college.id }) }}">{{ college.id }}</a></td>
+                <td>{{ college.collegeName }}</td>
+                <td>{{ college.tneaCode }}</td>
+                <td>{{ college.pageUrl }}</td>
+                <td>{{ college.addressTa }}</td>
+                <td>{{ college.addressEn }}</td>
+                <td>{{ college.pincode }}</td>
+                <td>{{ college.phoneNo }}</td>
+                <td>{{ college.faxNo }}</td>
+                <td>{{ college.emailid }}</td>
+                <td>{{ college.websiteName }}</td>
+                <td>{{ college.hqDistance }}</td>
+                <td>{{ college.railwayNear }}</td>
+                <td>{{ college.railwayDistance }}</td>
+                <td>{{ college.lat }}</td>
+                <td>{{ college.lng }}</td>
+                <td>{% if college.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>{% if college.isBlocked %}Yes{% else %}No{% endif %}</td>
+                <td>{% if college.modifiedon %}{{ college.modifiedon|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if college.createdon %}{{ college.createdon|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ college.viewed }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('college_show', { 'id': college.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('college_edit', { 'id': college.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('college_new') }}">Create a new college</a>
+        </li>
+    </ul>
+{% endblock %}

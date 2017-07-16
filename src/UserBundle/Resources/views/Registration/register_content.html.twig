@@ -1,0 +1,91 @@
+{#<div class="gw-padding-top-btm-sm">
+    <h3>Create account</h3>
+    <div>
+        Already have a MyWedding account? <a href="{{ path('fos_user_security_login') }}"><b>Log in here.</b></a>
+    </div>
+</div>#}
+<div class="row gw-padding-btm">
+    <div class="col-md-6 col-sm-6">
+        {#<h3 class="p-heading-03">Create account using social media</h3>
+        <p>You can create a MyWedding account directly using your social media account.
+            {% embed "UserBundle:Common:user-privacy-message.html.twig" %}
+            {% endembed %}
+        </p>#}
+        {#<ul class="list-inline">
+            <li>
+                <a class="btn btn-social btn-google"
+                   href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}" alt="Sign in with Google">
+                    <i class="fa fa-google"></i> Google
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-social btn-facebook"
+                   href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" alt="Sign in with Facebook">
+                    <i class="fa fa-facebook"></i> Facebook
+                </a>
+            </li>
+        </ul>#}
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <h3 class="p-heading-03">Create normal account</h3>
+        <p>
+            {% embed "UserBundle:Common:user-privacy-message.html.twig" %}
+            {% endembed %}
+        </p>
+        <p>Items marked with asterisk (*) are required.</p>
+
+        {#{{ form_start(form) }}#}
+        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+            {#                    {{ form_widget(form) }}#}
+
+            {{ form_widget(form._token) }}
+            {% if not form.vars.valid %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form_errors(form.email) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    {{ form_errors(form.firstname) }}
+                    {{ form_errors(form.lastname) }}
+                </div>
+            {% endif %}
+            <fieldset>
+                <h4 class="p-heading-04 p-form-title">Login information</h4>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Email address <i class="p-label-required">*</i></label>
+                    <div class="col-sm-7">
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Choose a password <i class="p-label-required">*</i></label>
+                    <div class="col-sm-7">
+                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Confirm password <i class="p-label-required">*</i></label>
+                    <div class="col-sm-7">
+                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Firstname</label>
+                    <div class="col-sm-7">
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-5 control-label">Lastname</label>
+                    <div class="col-sm-7">
+                        {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group text-center form-action">
+                <md-button type="submit" class="md-raised md-primary">Create account</md-button>
+                    {#                <input id="terms_btn" type="submit" value="Create account" class="btn btn-primary"/>#}
+            </div>
+        </form>
+        {#{{ form_end(form) }}#}
+    </div>
+</div>

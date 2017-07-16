@@ -1,0 +1,48 @@
+<?php
+
+namespace DataAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use APY\DataGridBundle\Grid\Mapping as GRID;
+
+// php bin/console doctrine:generate:entities DataAdminBundle/Entity/Course
+
+/**
+ * DataAdminBundle\Entity\Course
+ *
+ * @ORM\Table(name="course")
+ * @ORM\Entity
+ * 
+ */
+class Course {
+
+    /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $id;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="course_name_ta", type="string", length=100, nullable=false)
+     * @GRID\Column(field="courseNameTa", size=150, title="Course Name Tamil")
+     */
+    private $courseNameTa;   
+    
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="course_name_en", type="string", length=100, nullable=false)
+     * @GRID\Column(field="courseNameEn", size=150, title="Course Name English")
+     */
+    private $courseNameEn;
+    /**
+     * @var text $viewCount
+     *
+     * @ORM\Column(name="tnea_code", type="integer", length=10,  nullable=false, options={"default"=0})
+     */
+    private $tneaCode;
+    
+}

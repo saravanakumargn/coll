@@ -1,0 +1,48 @@
+<?php
+
+namespace DataAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use APY\DataGridBundle\Grid\Mapping as GRID;
+
+// php bin/console doctrine:generate:entities DataAdminBundle/Entity/Branch
+
+/**
+ * DataAdminBundle\Entity\Course
+ *
+ * @ORM\Table(name="branch")
+ * @ORM\Entity
+ * 
+ */
+class Branch {
+
+    /**
+     * @ORM\Column(type="guid")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="UUID")
+     */
+    private $id;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="branch_name_ta", type="string", length=100, nullable=false)
+     * @GRID\Column(field="branchNameTa", size=150, title="Branch Name Tamil")
+     */
+    private $branchNameTa;   
+    
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="branch_name_en", type="string", length=100, nullable=false)
+     * @GRID\Column(field="branchNameEn", size=150, title="Branch Name English")
+     */
+    private $branchNameEn;
+    /**
+     * @var text $viewCount
+     *
+     * @ORM\Column(name="tnea_code", type="string", length=10, nullable=false)
+     */
+    private $branchCode;
+    
+}

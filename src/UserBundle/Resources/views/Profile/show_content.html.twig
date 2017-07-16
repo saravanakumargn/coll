@@ -1,0 +1,51 @@
+<div class="row">
+    {#    <div class="col-md-10 col-md-offset-0">#}
+    <div class="col-md-6 col-md-offset-3">
+        {#        <div class="spacer-height-sz-1"></div>#}
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Profile View</h3>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">{{ user.email }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Firstname</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">
+                                {% if user.firstname is empty %}
+                                    --
+                                {% else %}
+                                    {{ user.firstname }}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Lastname</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static">
+                                {% if user.lastname is empty %}
+                                    --
+                                {% else %}
+                                    {{ user.lastname }}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="spacer-height-sm"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}" role="button"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Edit</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

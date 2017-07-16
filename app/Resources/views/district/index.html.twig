@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Districts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Districtnameta</th>
+                <th>Districtnameen</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for district in districts %}
+            <tr>
+                <td><a href="{{ path('district_show', { 'id': district.id }) }}">{{ district.id }}</a></td>
+                <td>{{ district.districtNameTa }}</td>
+                <td>{{ district.districtNameEn }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('district_show', { 'id': district.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('district_edit', { 'id': district.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('district_new') }}">Create a new district</a>
+        </li>
+    </ul>
+{% endblock %}

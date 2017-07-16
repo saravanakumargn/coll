@@ -1,0 +1,271 @@
+<?php
+
+namespace DataAdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use APY\DataGridBundle\Grid\Mapping as GRID;
+
+// php bin/console doctrine:generate:entities DataAdminBundle/Entity/Category
+
+/**
+ * DataAdminBundle\Entity\Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity
+ * @GRID\Source(columns="id, categoryUrl, categoryLabelTa, categoryLabelEn, isActive, isPrimary") 
+ */
+class Category {
+
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    
+    /**
+     * @var string $author
+     *
+     * @ORM\Column(name="category_url", type="string", length=100, unique=true)
+     */
+    private $categoryUrl;
+
+    /**
+     * @var text $categoryParentId
+     *
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="list_items")
+     * @ORM\JoinColumn(name="category_parent_id", referencedColumnName="id")
+     */
+    private $categoryParentId;
+    
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="category_label_ta", type="string", length=100, nullable=false)
+     */
+    private $categoryLabelTa;    
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="category_label_en", type="string", length=100, nullable=false)
+     */
+    private $categoryLabelEn;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default"=true})
+     */
+    private $isActive;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="is_primary", type="boolean", options={"default"=false})
+     */
+    private $isPrimary;    
+    
+    private function seoUrl($str) {
+        if ($str !== mb_convert_encoding(mb_convert_encoding($str, 'UTF-32', 'UTF-8'), 'UTF-8', 'UTF-32'))
+            $str = mb_convert_encoding($str, 'UTF-8', mb_detect_encoding($str));
+        $str = htmlentities($str, ENT_NOQUOTES, 'UTF-8');
+        $str = preg_replace('`&([a-z]{1,2})(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', '\1', $str);
+        $str = html_entity_decode($str, ENT_NOQUOTES, 'UTF-8');
+        $str = preg_replace(array('`[^a-z0-9]`i', '`[-]+`'), '-', $str);
+        $str = strtolower(trim($str, '-'));
+        return $str;
+        /*
+          //Lower case everything
+          $string = strtolower($string);
+          //Make alphanumeric (removes all other characters)
+          $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+          //Clean up multiple dashes or whitespaces
+          $string = preg_replace("/[\s-]+/", " ", $string);
+          //Convert whitespaces and underscore to dash
+          $string = preg_replace("/[\s_]/", "-", $string);
+          return $string;
+
+         */
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set categoryUrl
+     *
+     * @param string $categoryUrl
+     *
+     * @return Category
+     */
+    public function setCategoryUrl($categoryUrl)
+    {
+//        $this->categoryUrl = $categoryUrl;
+        $this->categoryUrl = $this->seoUrl($categoryUrl);
+
+        return $this;
+    }
+
+    /**
+     * Get categoryUrl
+     *
+     * @return string
+     */
+    public function getCategoryUrl()
+    {
+        return $this->categoryUrl;
+    }
+
+    /**
+     * Set categoryLabelTa
+     *
+     * @param string $categoryLabelTa
+     *
+     * @return Category
+     */
+    public function setCategoryLabelTa($categoryLabelTa)
+    {
+        $this->categoryLabelTa = $categoryLabelTa;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryLabelTa
+     *
+     * @return string
+     */
+    public function getCategoryLabelTa()
+    {
+        return $this->categoryLabelTa;
+    }
+
+    /**
+     * Set categoryLabelEn
+     *
+     * @param string $categoryLabelEn
+     *
+     * @return Category
+     */
+    public function setCategoryLabelEn($categoryLabelEn)
+    {
+        $this->categoryLabelEn = $categoryLabelEn;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryLabelEn
+     *
+     * @return string
+     */
+    public function getCategoryLabelEn()
+    {
+        return $this->categoryLabelEn;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Category
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set isPrimary
+     *
+     * @param boolean $isPrimary
+     *
+     * @return Category
+     */
+    public function setIsPrimary($isPrimary)
+    {
+        $this->isPrimary = $isPrimary;
+
+        return $this;
+    }
+
+    /**
+     * Get isPrimary
+     *
+     * @return boolean
+     */
+    public function getIsPrimary()
+    {
+        return $this->isPrimary;
+    }
+
+    /**
+     * Set categoryParentId
+     *
+     * @param \DataAdminBundle\Entity\Category $categoryParentId
+     *
+     * @return Category
+     */
+    public function setCategoryParentId(\DataAdminBundle\Entity\Category $categoryParentId = null)
+    {
+        $this->categoryParentId = $categoryParentId;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryParentId
+     *
+     * @return \DataAdminBundle\Entity\Category
+     */
+    public function getCategoryParentId()
+    {
+        return $this->categoryParentId;
+    }
+
+    /**
+     * Set isSubPrimary
+     *
+     * @param boolean $isSubPrimary
+     *
+     * @return Category
+     */
+    public function setIsSubPrimary($isSubPrimary)
+    {
+        $this->isSubPrimary = $isSubPrimary;
+
+        return $this;
+    }
+
+    /**
+     * Get isSubPrimary
+     *
+     * @return boolean
+     */
+    public function getIsSubPrimary()
+    {
+        return $this->isSubPrimary;
+    }
+}

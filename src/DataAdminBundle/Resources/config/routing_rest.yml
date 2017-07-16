@@ -1,0 +1,17 @@
+admin_directory_v1: 
+  type: rest
+  prefix: /v1/admin
+  resource:     "DataAdminBundle:v1/Directory"
+  name_prefix:  api_
+  
+admin_category_v1: 
+  type: rest
+  prefix: /v1/admin
+  resource:     "DataAdminBundle:v1/Category"
+  name_prefix:  api_
+  
+admin_marketplace_v1: 
+  type: rest
+  prefix: /v1/admin
+  resource:     "DataAdminBundle:v1/MarketPlace"
+  name_prefix:  api_
