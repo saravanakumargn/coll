@@ -109,13 +109,6 @@ class College {
     private $isActive;    
 
     /**
-     * @var text $isBlocked
-     *
-     * @ORM\Column(name="is_blocked", type="boolean",  nullable=false, options={"default"=false})
-     */
-    private $isBlocked;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $modifiedon;

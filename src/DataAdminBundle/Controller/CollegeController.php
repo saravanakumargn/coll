@@ -77,8 +77,10 @@ class CollegeController extends Controller
 
             return $this->redirectToRoute('college_show', array('id' => $college->getId()));
         }
+        $allBranches = $this->get("branch_service")->getAllBranches();
         return $this->render('college/new.html.twig', array(
-            'college' => $college
+            'college' => $college,
+            'allBranches' => $allBranches
         ));
 
 //        return $this->render('college/new.html.twig', array(

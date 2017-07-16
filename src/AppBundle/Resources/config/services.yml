@@ -1,0 +1,5 @@
+services:   
+    branch_service:
+        class: AppBundle\Service\BranchService
+        arguments: ["@doctrine.orm.entity_manager", "@service_container"]  
+        

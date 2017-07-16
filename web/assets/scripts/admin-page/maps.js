@@ -20,7 +20,7 @@ var addressDetails = [];
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 10.7904833, lng: 78.70467250000002},
-        zoom: 6
+        zoom: 7
     });
 
     var input = document.getElementById('pac-input');
@@ -58,6 +58,8 @@ function initMap() {
 //        }
 
         addressDetails = [];
+        var sublocality_level_1='';
+        var locality='';
         // Get each component of the address from the place details
         // and fill the corresponding field on the form.
         for (var i = 0; i < place.address_components.length; i++) {
@@ -66,15 +68,32 @@ function initMap() {
                 var val = place.address_components[i][componentForm[addressType]];
                 console.log(componentForm[addressType])
                 console.log(place.address_components[i].types[0])
+                if ("postal_code" === place.address_components[i].types[0]) {
+                    $('#pincode').val(val);
+                } else if ("administrative_area_level_2" === place.address_components[i].types[0]) {
+                    $('#district').val(val);
+                } else if ("sublocality_level_1" === place.address_components[i].types[0]) {
+                    sublocality_level_1 = val;
+                } else if ("locality" === place.address_components[i].types[0]) {
+                    locality = val;
+                }
+                
+                
 //            console.log(val);
                 var obj = {};
                 obj[place.address_components[i].types[0]] = val;
                 addressDetails.push(obj);
             }
         }
-        addressDetails.push({'formatted_address': place.formatted_address});
-        addressDetails.push({'lat': place.geometry.location.lat()});
-        addressDetails.push({'lng': place.geometry.location.lng()});
+//        addressDetails.push({'formatted_address': place.formatted_address});
+//        addressDetails.push({'lat': place.geometry.location.lat()});
+//        addressDetails.push({'lng': place.geometry.location.lng()});
+
+        $('#pageUrl').val(place.name+' '+sublocality_level_1+' '+locality);
+        $('#college_name').val(place.name);
+        $('#full_address').val(place.formatted_address);
+        $('#lat').val(place.geometry.location.lat());
+        $('#lng').val(place.geometry.location.lng());
         console.log(addressDetails);
 
         geocoder.geocode({'placeId': place.place_id}, function (results, status) {

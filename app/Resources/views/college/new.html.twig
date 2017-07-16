@@ -8,47 +8,142 @@
     <script src="{{ asset('assets/scripts/admin-page/maps.js') }}?v={{ date().timestamp }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv971y_AIFpzg12MG8BMIKViXKM12mc5I&libraries=places&callback=initMap"
     async defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".selectList").select2();
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
     <section class="content-header">
         <h1>College creation</h1>
     </section>
-
-    <section class="content" ng-app="studyApp" ng-cloak>
+    {#<section class="content" ng-app="weddingApp" ng-controller="VendorNewCtrl"
+                 {% if id is defined %}data-ng-init="editData('{{id}}', {{pageContent|json_encode()}})"{% else %} data-ng-init="newData({{pageContent|json_encode()}})"{% endif %}>    #}
+    <section class="content" ng-app="studyApp" ng-controller="CourceController as vm" ng-cloak
+             data-ng-init="newData({{allBranches|json_encode()}})">
         <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <i class="fa fa-edit"></i>
-                        <h3 class="box-title">New College</h3>
-                    </div>
+            <div class="col-md-8">
+                <div class="box box-success">
                     <div class="box-body">
-                        <section>
-                            College
-                            <div>
-                                <label>Name:</label>
-                                <input type="text" ng-model="yourName" placeholder="Enter a name here">
-                                <hr>
-                                <h1>Hello [[yourName]]!</h1>
+                        <section style="height: 520px; width: 100%;">
+                            <input id="pac-input" class="controls" type="text"
+                                   placeholder="Enter the collage name">
+                            <div id="map"></div>
+                            <div id="infowindow-content">
+                                <span id="place-name"  class="title"></span><br>
+                                Place ID <span id="place-id"></span><br>
+                                <span id="place-address"></span>
                             </div>
-
-                            <section style="height: 300px; width: 100%">
-                                <input id="pac-input" class="controls" type="text"
-                                       placeholder="Enter a location">
-                                <div id="map"></div>
-                                <div id="infowindow-content">
-                                    <span id="place-name"  class="title"></span><br>
-                                    Place ID <span id="place-id"></span><br>
-                                    <span id="place-address"></span>
-                                </div>
-                            </section>
                         </section>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="box box-success">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>TNEA Code</label>
+                            <input type="number" class="form-control" placeholder="TNEA Code"/>
+                        </div>
+                        <div class="form-group">
+                            <label>College name</label>
+                            <input type="text" id="college_name" class="form-control" placeholder="College name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Full address</label>
+                            <textarea id="full_address" class="form-control" rows="2" placeholder="Full address"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" id="district" class="form-control" placeholder="District" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" id="pincode" class="form-control" placeholder="Pincode" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="text" id="lat" class="form-control" placeholder="Latitude" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="text" id="lng" class="form-control" placeholder="Longitude" ng-model="cource.vendor_name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-success">
+                    <div class="box-header">
+                        <i class="fa fa-edit"></i>
+                        <h3 class="box-title">Extra details</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>Page URL</label>
+                            <input id="pageUrl" type="text" class="form-control" placeholder="Page URL" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control" placeholder="Phone" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Fax No</label>
+                            <input type="text" class="form-control" placeholder="Fax no" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email-Id</label>
+                            <input type="text" class="form-control" placeholder="Email-Id" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="text" class="form-control" placeholder="Website" ng-model="cource.vendor_name">
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">Active</label>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-edit"></i>
+                        <h3 class="box-title">Branches</h3>
+                    </div>
+                    <div class="box-body">  
+
+
+                        <div class="form-group">
+                            <label>Branches List</label>
+                            <select id="branchesList" class="form-control selectList">
+                            </select>
+                        </div>
+                        <div>
+                            <div class="input-group" ng-repeat="branch in vm.cource.branchModal">
+                                                        <div class="form-group">
+                            <label>Branches List</label>
+                            <select id="branchesList" class="form-control selectList">
+                            </select>
+                        </div>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <input type="button" class="btn btn-primary" value="Add Branch" ng-click="vm.addBranch()"/>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
         {{ dump(college) }}
+        {{ dump(allBranches) }}
     </section>
 
 {% endblock %}
