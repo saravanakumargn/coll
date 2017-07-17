@@ -19,9 +19,10 @@ var componentForm = {
 var addressDetails = [];
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 10.7904833, lng: 78.70467250000002},
+        center: {lat: 11.3392101, lng: 77.41640630000006},
         zoom: 7
     });
+    google.maps.event.trigger(map, 'resize');
 
     var input = document.getElementById('pac-input');
 
