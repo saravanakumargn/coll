@@ -22,7 +22,6 @@ function initMap() {
         center: {lat: 11.3392101, lng: 77.41640630000006},
         zoom: 7
     });
-    google.maps.event.trigger(map, 'resize');
 
     var input = document.getElementById('pac-input');
 
@@ -45,7 +44,7 @@ function initMap() {
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
-
+    google.maps.event.trigger(map, 'resize');
     autocomplete.addListener('place_changed', function () {
         infowindow.close();
         var place = autocomplete.getPlace();
@@ -59,8 +58,8 @@ function initMap() {
 //        }
 
         addressDetails = [];
-        var sublocality_level_1='';
-        var locality='';
+        var sublocality_level_1 = '';
+        var locality = '';
         // Get each component of the address from the place details
         // and fill the corresponding field on the form.
         for (var i = 0; i < place.address_components.length; i++) {
@@ -78,8 +77,8 @@ function initMap() {
                 } else if ("locality" === place.address_components[i].types[0]) {
                     locality = val;
                 }
-                
-                
+
+
 //            console.log(val);
                 var obj = {};
                 obj[place.address_components[i].types[0]] = val;
@@ -90,7 +89,7 @@ function initMap() {
 //        addressDetails.push({'lat': place.geometry.location.lat()});
 //        addressDetails.push({'lng': place.geometry.location.lng()});
 
-        $('#pageUrl').val(place.name+' '+sublocality_level_1+' '+locality);
+        $('#pageUrl').val(place.name + ' ' + sublocality_level_1 + ' ' + locality);
         $('#college_name').val(place.name);
         $('#full_address').val(place.formatted_address);
         $('#lat').val(place.geometry.location.lat());
@@ -118,4 +117,6 @@ function initMap() {
             infowindow.open(map, marker);
         });
     });
+
+
 }
