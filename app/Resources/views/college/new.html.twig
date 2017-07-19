@@ -96,22 +96,26 @@
                             <div class="form-group">
                                 <label>TNEA Code</label>
                                 <input type="number" class="form-control" placeholder="TNEA Code"/>
-                            </div>                          
+                            </div>      
+                            <div class="form-group">
+                                <label>Details Paste</label>
+                                <textarea class="form-control" rows="5" placeholder="Other Details Paste here..." ng-model="vm.collegeDetails"></textarea>
+                            </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input type="text" class="form-control" placeholder="Phone" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Phone" ng-model="vm.cource.phoneNo">
                             </div>
                             <div class="form-group">
                                 <label>Fax No</label>
-                                <input type="text" class="form-control" placeholder="Fax no" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Fax no" ng-model="vm.cource.faxNo">
                             </div>
                             <div class="form-group">
                                 <label>Email-Id</label>
-                                <input type="text" class="form-control" placeholder="Email-Id" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Email-Id" ng-model="vm.cource.emailId">
                             </div>
                             <div class="form-group">
                                 <label>Website</label>
-                                <input type="text" class="form-control" placeholder="Website" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Website" ng-model="vm.cource.website">
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -122,98 +126,86 @@
                 </div>
             </div>
             <div class="row">
-<div class="col-md-6">
-    <div class="box box-info">
-                        <div class="box-header">
-                            <i class="fa fa-edit"></i>
-                            <h3 class="box-title">Paste Branches</h3>
-                        </div>
-                        <div class="box-body">  
-                                            <div class="form-group">
-                  <label>Textarea</label>
-                  <textarea class="form-control" rows="10" ng-model="vm.branchesText"></textarea>
-                </div>
-                            </div>
-        </div>
-    </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header">
                             <i class="fa fa-edit"></i>
                             <h3 class="box-title">Branches</h3>
                         </div>
                         <div class="box-body">  
-                            <md-button class="md-raised md-primary">Primary</md-button>
-                                {#<div class="form-group">
-                                    <label>Branches List</label>
-                                    <md-autocomplete
-                                        md-selected-item="vm.selectedItem"
-                                        md-search-text="vm.searchText"
-                                        md-selected-item-change="vm.selectedItemChange(item)"
-                                        md-items="item in vm.querySearch(vm.searchText)"
-                                        md-item-text="item.bn"
-                                        md-min-length="0"
-                                        placeholder="Pick an Angular repository"
-                                        md-menu-class="autocomplete-custom-template">
-                                        <md-item-template>
-                                            <span class="item-title">
-                                                <span> [[item.bn]] </span>
-                                            </span>
-                                            <span class="item-metadata">
-                                                <span>
-                                                    <strong>[[item.bc]]</strong>
-                                                </span>
-                                            </span>                                        
-                                        </md-item-template>
-                                    </md-autocomplete>
-                                </div>#}
-                            <div>
-                                <fieldset class="standard" ng-repeat="branch in vm.cource.branchModal track by $index">
-                                    <legend>Branch [[$index + 1]]</legend>
+                            <label>Total cources : [[vm.cource.branchModal.length]]</label>
+                            <div class="form-group">
+                                <input type="button" class="btn btn-primary" value="Add Branch" ng-click="vm.addBranch()"/>
+                                <input type="button" class="btn btn-primary" value="Delete All Branchs" ng-click="vm.delAllBranch()"/>
+                            </div>
+                            <div class="row">                                
+                                <div class="col-md-4">
+                                      <div class="form-group">
+                                <label>Branches</label>
+                                <textarea class="form-control" rows="15" placeholder="Past branchs here..." ng-model="vm.branchesText"></textarea>
+                            </div>
+                                </div>
+                                <div class="col-md-4" ng-repeat="branch in vm.cource.branchModal track by $index">
+                                    <div class="box" ng-class-odd="'box-success'" ng-class-even="'box-primary'">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Branch [[$index + 1]]</h3>
 
-                                    [[branch]]                                        
-                                    <md-autocomplete
-                                        md-selected-item="branch.course"
-                                        md-search-text="vm['searchText' + $index]"
-                                        md-selected-item-change="vm.selectedItemChange(item, $index)"
-                                        md-items="item in vm.querySearch(vm['searchText' + $index])"
-                                        md-item-text="item.bn"
-                                        md-min-length="0"
-                                        placeholder="Pick an Angular repository"
-                                        md-menu-class="autocomplete-custom-template">
-                                        <md-item-template>
-                                            <span class="item-title">
-                                                <span> [[item.bn]] </span>
-                                            </span>
-                                            <span class="item-metadata">
-                                                <span>
-                                                    <strong>[[item.bc]]</strong>
-                                                </span>
-                                            </span>                                        
-                                        </md-item-template>
-                                    </md-autocomplete>
-                                    <br/>
-                                    <md-input-container class="md-block" flex-gt-sm>
-                                        <label>Approved Intake(Seats)</label>
-                                        <input ng-model="user.firstName">
-                                    </md-input-container>
-                                    <md-input-container class="md-block" flex-gt-sm>
-                                        <label>Year of Starting of Course</label>
-                                        <input ng-model="branch.st">
-                                    </md-input-container>
-                                </fieldset>
-                                <div class="form-group">
-                                    <input type="button" class="btn btn-primary" value="Add Branch" ng-click="vm.addBranch()"/>
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" ng-click="vm.deleteBranch([[$index]])"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="box-body">
+                                            <fieldset class="standard">
+                                                {#                                        <legend>Branch [[$index + 1]]</legend>#}
+                                                {#                                    [[branch]]                                        #}
+                                                <md-autocomplete
+                                                    md-selected-item="branch.course"
+                                                    md-search-text="vm['searchText' + $index]"
+                                                    md-selected-item-change="vm.selectedItemChange(item, $index)"
+                                                    md-items="item in vm.querySearch(vm['searchText' + $index])"
+                                                    md-item-text="item.bn"
+                                                    md-min-length="0"
+                                                    placeholder="Pick an Angular repository"
+                                                    md-menu-class="autocomplete-custom-template">
+                                                    <md-item-template>
+                                                        <span class="item-title">
+                                                            <span> [[item.bn]] </span>
+                                                        </span>
+                                                        <span class="item-metadata">
+                                                            <span>
+                                                                <strong>[[item.bc]]</strong>
+                                                            </span>
+                                                        </span>                                        
+                                                    </md-item-template>
+                                                </md-autocomplete>
+                                                <br/>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label>Approved Intake(Seats)</label>
+                                                    <input ng-model="user.firstName">
+                                                </md-input-container>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label>Year of Starting of Course</label>
+                                                    <input ng-model="branch.st">
+                                                </md-input-container>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
+                            {#<div class="form-group">
+                                <input type="button" class="btn btn-primary" value="Add Branch" ng-click="vm.addBranch()"/>
+                            </div>#}
                         </div>
                     </div>   
                     <div class="col-md-6">
 
                     </div>
                 </div>
-                {# {{ dump(college) }}
-                 {{ dump(allBranches) }}#}
+            </div>
+            {# {{ dump(college) }}
+             {{ dump(allBranches) }}#}
         </section>
         <section>
             <div  style="margin-top:250px;">
