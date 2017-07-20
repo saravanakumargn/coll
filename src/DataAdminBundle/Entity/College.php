@@ -79,13 +79,13 @@ class College {
      *
      * @ORM\Column(name="email_id", type="string", length=60, nullable=true)
      */
-    private $email_id;    
+    private $emailId;    
     /**
      * @var text $content
      *
      * @ORM\Column(name="website_name", type="string", length=60, nullable=true)
      */
-    private $websiteName;  
+    private $website;  
     
     /**
      * @var string $lat
@@ -363,7 +363,7 @@ class College {
      */
     public function setEmailId($emailId)
     {
-        $this->email_id = $emailId;
+        $this->emailId = $emailId;
 
         return $this;
     }
@@ -375,31 +375,31 @@ class College {
      */
     public function getEmailId()
     {
-        return $this->email_id;
+        return $this->emailId;
     }
 
     /**
-     * Set websiteName
+     * Set website
      *
-     * @param string $websiteName
+     * @param string $website
      *
      * @return College
      */
-    public function setWebsiteName($websiteName)
+    public function setWebsite($website)
     {
-        $this->websiteName = $websiteName;
+        $this->website = $website;
 
         return $this;
     }
 
     /**
-     * Get websiteName
+     * Get website
      *
      * @return string
      */
-    public function getWebsiteName()
+    public function getWebsite()
     {
-        return $this->websiteName;
+        return $this->website;
     }
 
     /**
@@ -472,30 +472,6 @@ class College {
     public function getIsActive()
     {
         return $this->isActive;
-    }
-
-    /**
-     * Set isBlocked
-     *
-     * @param boolean $isBlocked
-     *
-     * @return College
-     */
-    public function setIsBlocked($isBlocked)
-    {
-        $this->isBlocked = $isBlocked;
-
-        return $this;
-    }
-
-    /**
-     * Get isBlocked
-     *
-     * @return boolean
-     */
-    public function getIsBlocked()
-    {
-        return $this->isBlocked;
     }
 
     /**

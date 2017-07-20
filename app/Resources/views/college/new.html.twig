@@ -44,8 +44,24 @@
                 </div>
             </div>
         </div>
-        <section  ng-app="studyApp" ng-controller="CourceController as vm" ng-cloak
+        <section id="mainSection" ng-app="studyApp" ng-controller="CourceController as vm" ng-cloak
                   data-ng-init="newData({{allBranches|json_encode()}})">
+            <form name="form" ng-submit="vm.submit()" novalidate>
+            <div class="text-right">
+                <div class="col-sm-offset-2 col-sm-10">
+                    {% if id is not defined %}
+                        <button type="button" class="btn btn-default" ng-click="vm.reset()">Reset</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        {#<button type="submit" class="btn btn-primary" ng-disabled="!vendor.vendor_name">Save</button>#}
+                    {% else %}
+                        <a class="btn btn-primary" href="{{ path('marketplace_show', { 'id': id }) }}">show</a>
+                        <button type="submit" class="btn btn-primary" ng-disabled="!vendor.vendor_name">Update</button>
+                        {#<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                            Delete Item
+                        </button>#}
+                    {% endif %}
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="box box-success">
@@ -56,32 +72,32 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>College name</label>
-                                <input type="text" id="college_name" class="form-control" placeholder="College name"/>
+                                <input type="text" class="form-control" placeholder="College name" ng-model="vm.cource.collegeName"/>
                             </div>
                             <div class="form-group">
                                 <label>Page URL</label>
-                                <input id="pageUrl" type="text" class="form-control" placeholder="Page URL" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Page URL" ng-model="vm.cource.pageUrl"/>
                             </div>
 
                             <div class="form-group">
                                 <label>Full address</label>
-                                <textarea id="full_address" class="form-control" rows="2" placeholder="Full address"></textarea>
+                                <textarea class="form-control" rows="2" placeholder="Full address" ng-model="vm.cource.fullAddress"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>District</label>
-                                <input type="text" id="district" class="form-control" placeholder="District" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="District" ng-model="vm.cource.district">
                             </div>
                             <div class="form-group">
                                 <label>Pincode</label>
-                                <input type="text" id="pincode" class="form-control" placeholder="Pincode" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Pincode" ng-model="vm.cource.pincode">
                             </div>
                             <div class="form-group">
                                 <label>Latitude</label>
-                                <input type="text" id="lat" class="form-control" placeholder="Latitude" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Latitude" ng-model="vm.cource.lat">
                             </div>
                             <div class="form-group">
                                 <label>Longitude</label>
-                                <input type="text" id="lng" class="form-control" placeholder="Longitude" ng-model="cource.vendor_name">
+                                <input type="text" class="form-control" placeholder="Longitude" ng-model="vm.cource.lng">
                             </div>
                         </div>
                     </div>
@@ -93,9 +109,12 @@
                             <h3 class="box-title">Details</h3>
                         </div>
                         <div class="box-body">
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error': form.$submitted && form.tneaCode.$invalid }">
                                 <label>TNEA Code</label>
-                                <input type="number" class="form-control" placeholder="TNEA Code"/>
+                                <input type="number" class="form-control" placeholder="TNEA Code" name="tneaCode" ng-model="vm.cource.tneaCode" ng-blur="vm.tneaCodeChange()" required/>
+                                    <div ng-show="form.$submitted || form.tneaCode.$touched">
+      <div class="help-block" ng-show="form.tneaCode.$error.required">Enter TNEA code.</div>
+    </div>
                             </div>      
                             <div class="form-group">
                                 <label>Details Paste</label>
@@ -119,7 +138,7 @@
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox">Active</label>
+                                    <input type="checkbox" ng-model="vm.cource.isActive">Active</label>
                             </div>                        
                         </div>
                     </div>
@@ -140,10 +159,10 @@
                             </div>
                             <div class="row">                                
                                 <div class="col-md-4">
-                                      <div class="form-group">
-                                <label>Branches</label>
-                                <textarea class="form-control" rows="15" placeholder="Past branchs here..." ng-model="vm.branchesText"></textarea>
-                            </div>
+                                    <div class="form-group">
+                                        <label>Branches</label>
+                                        <textarea class="form-control" rows="15" placeholder="Past branchs here..." ng-model="vm.branchesText"></textarea>
+                                    </div>
                                 </div>
                                 <div class="col-md-4" ng-repeat="branch in vm.cource.branchModal track by $index">
                                     <div class="box" ng-class-odd="'box-success'" ng-class-even="'box-primary'">
@@ -181,11 +200,19 @@
                                                 <br/>
                                                 <md-input-container class="md-block" flex-gt-sm>
                                                     <label>Approved Intake(Seats)</label>
-                                                    <input ng-model="user.firstName">
+                                                    <input ng-model="branch.approvedIntake">
                                                 </md-input-container>
                                                 <md-input-container class="md-block" flex-gt-sm>
                                                     <label>Year of Starting of Course</label>
-                                                    <input ng-model="branch.st">
+                                                    <input ng-model="branch.startingYear">
+                                                </md-input-container>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label>nbaAccredited</label>
+                                                    <input ng-model="branch.nbaAccredited">
+                                                </md-input-container>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label>accreditationValid</label>
+                                                    <input ng-model="branch.accreditationValid">
                                                 </md-input-container>
                                             </fieldset>
                                         </div>
@@ -206,6 +233,7 @@
             </div>
             {# {{ dump(college) }}
              {{ dump(allBranches) }}#}
+            </form>
         </section>
         <section>
             <div  style="margin-top:250px;">

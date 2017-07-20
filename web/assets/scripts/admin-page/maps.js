@@ -16,7 +16,7 @@ var componentForm = {
     administrative_area_level_2: 'long_name',
     postal_code: 'short_name'
 };
-var addressDetails = [];
+//var addressDetails = [];
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 11.3392101, lng: 77.41640630000006},
@@ -57,44 +57,62 @@ function initMap() {
 //          document.getElementById(component).disabled = false;
 //        }
 
-        addressDetails = [];
+//        addressDetails = [];
+        var addressObj = {};
         var sublocality_level_1 = '';
         var locality = '';
+        var district = '';
         // Get each component of the address from the place details
         // and fill the corresponding field on the form.
         for (var i = 0; i < place.address_components.length; i++) {
             var addressType = place.address_components[i].types[0];
             if (componentForm[addressType]) {
                 var val = place.address_components[i][componentForm[addressType]];
-                console.log(componentForm[addressType])
-                console.log(place.address_components[i].types[0])
+//                console.log(componentForm[addressType])
+//                console.log(place.address_components[i].types[0])
                 if ("postal_code" === place.address_components[i].types[0]) {
-                    $('#pincode').val(val);
+//                    $('#pincode').val(val);
+//                    addressDetails.push({'pincode': val});
+                    addressObj['pincode'] = val;
                 } else if ("administrative_area_level_2" === place.address_components[i].types[0]) {
-                    $('#district').val(val);
+//                    $('#district').val(val);
+//                    addressDetails.push({'district': val});
+                    addressObj['district'] = val;
+                    district = val;
                 } else if ("sublocality_level_1" === place.address_components[i].types[0]) {
                     sublocality_level_1 = val;
                 } else if ("locality" === place.address_components[i].types[0]) {
                     locality = val;
                 }
-
-
 //            console.log(val);
-                var obj = {};
-                obj[place.address_components[i].types[0]] = val;
-                addressDetails.push(obj);
+//                var obj = {};
+//                obj[place.address_components[i].types[0]] = val;
+//                addressDetails.push(obj);
             }
         }
-//        addressDetails.push({'formatted_address': place.formatted_address});
+//        $('#pageUrl').val(pageUrl);
+//        $('#college_name').val(place.name);
+//        $('#full_address').val(place.formatted_address);
+//        $('#lat').val(place.geometry.location.lat());
+//        $('#lng').val(place.geometry.location.lng());
+        var pageUrl = place.name + ' ' + sublocality_level_1 + ' ' + locality;
+        if (district !== sublocality_level_1 && district !== locality) {
+            pageUrl = pageUrl + ' ' + district;
+        }
+        addressObj['pageUrl'] = pageUrl;
+        addressObj['collegeName'] = place.name;
+        addressObj['fullAddress'] = place.formatted_address;
+        addressObj['lat'] = place.geometry.location.lat();
+        addressObj['lng'] = place.geometry.location.lng();
+
+//        addressDetails.push({'pageUrl': pageUrl});
+//        addressDetails.push({'college_name': place.name});
+//        addressDetails.push({'full_address': place.formatted_address});
 //        addressDetails.push({'lat': place.geometry.location.lat()});
 //        addressDetails.push({'lng': place.geometry.location.lng()});
 
-        $('#pageUrl').val(place.name + ' ' + sublocality_level_1 + ' ' + locality);
-        $('#college_name').val(place.name);
-        $('#full_address').val(place.formatted_address);
-        $('#lat').val(place.geometry.location.lat());
-        $('#lng').val(place.geometry.location.lng());
-        console.log(addressDetails);
+//        console.log(addressDetails);
+        angular.element(document.getElementById('mainSection')).scope().mapCalling(addressObj);
 
         geocoder.geocode({'placeId': place.place_id}, function (results, status) {
 

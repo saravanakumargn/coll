@@ -21,6 +21,7 @@ studyApp.controller('CourceController', ['$scope', function ($scope) {
 //    vm.searchTextChange   = searchTextChange;
         function defaultAll() {
             vm.cource = {};
+            vm.cource.isActive = true;
             vm.cource.branchModal = [];
 //            vm.cource.branchModal = [
 //                {
@@ -97,6 +98,10 @@ studyApp.controller('CourceController', ['$scope', function ($scope) {
             };
         }
 
+        vm.tneaCodeChange = function () {
+            vm.cource.pageUrl = vm.cource.tneaCode + ' ' + vm.cource.pageUrl;
+        };
+
         $scope.$watch('vm.branchesText', function (newValue, oldValue) {
 //            console.log(newValue)
             // console.log(val);
@@ -122,17 +127,24 @@ studyApp.controller('CourceController', ['$scope', function ($scope) {
                                         branchObj["course"] = branchItem[0];
                                     }
 //                                    branchObj["course"] = branchData.filter(createFilterPaste(item));
-                                    branchObj["bc"] = item;
+                                    branchObj["branchId"] = item;
                                     break;
                                 case 1:
-                                    branchObj["approved"] = item;
+                                    branchObj["approvedIntake"] = item;
                                     break;
                                 case 2:
-                                    branchObj["st"] = item;
+                                    branchObj["startingYear"] = item;
                                     break;
                                 case 3:
+                                    branchObj["nbaAccredited"] = item;
                                     break;
                                 case 4:
+                                    if (item !== '--' && item.length >= 3) {
+                                        branchObj["accreditationValid"] = item;
+                                    }
+                                    else {
+                                        branchObj["accreditationValid"] = null;
+                                    }
                                     break;
                             }
                             index++;
@@ -146,12 +158,12 @@ studyApp.controller('CourceController', ['$scope', function ($scope) {
 
         $scope.$watch('vm.collegeDetails', function (newValue, oldValue) {
             var columns = newValue.split(/\r?\n/);
-   console.log(columns);
+//   console.log(columns);
             //for(i=0; i < columns.length; i++){
             for (var i = 0; i < 4; i++) {
                 if (columns[i]) {
                     var name = columns[i].trim();
-     console.log(name);    
+//     console.log(name);    
                     switch (i) {
                         case 0:
                             if (name !== '--' && name.length >= 5) {
@@ -186,4 +198,37 @@ studyApp.controller('CourceController', ['$scope', function ($scope) {
                 }
             }
         });
+        vm.reset = function () {
+            defaultAll();
+        };
+        vm.submit = function () {
+            console.log(vm.cource);
+            //        console.log(JSON.stringify($scope.vendor));
+//            $scope.loading = true;
+//            //        console.dir($scope.selectedLocation);
+//            //        console.dir($scope.selectedLocation['id']);
+//            $scope.setLocation();
+//            var req = {
+//                method: 'POST',
+//                url: save_url,
+//                data: $scope.vendor
+//            };
+//            commonDataService.send(req).then(saveSuccess, saveError);
+        };
+        function setAutoFillForm(data) {
+//            console.log(data);
+            vm.cource.collegeName = data.collegeName;
+            vm.cource.pageUrl = data.pageUrl;
+            vm.cource.fullAddress = data.fullAddress;
+            vm.cource.district = data.district;
+            vm.cource.pincode = data.pincode;
+            vm.cource.lat = data.lat;
+            vm.cource.lng = data.lng;
+            $scope.$apply(function () {
+            });
+        }
+        $scope.mapCalling = function (data) {
+            setAutoFillForm(data);
+
+        };
     }]);

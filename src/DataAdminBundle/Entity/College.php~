@@ -79,25 +79,25 @@ class College {
      *
      * @ORM\Column(name="email_id", type="string", length=60, nullable=true)
      */
-    private $email_id;    
+    private $emailId;    
     /**
      * @var text $content
      *
      * @ORM\Column(name="website_name", type="string", length=60, nullable=true)
      */
-    private $websiteName;  
+    private $website;  
     
     /**
      * @var string $lat
      *
-     * @ORM\Column(name="lat", type="decimal", scale=32, nullable=true)
+     * @ORM\Column(name="lat", type="decimal", precision=26, scale=4, nullable=true)
      */
     private $lat;
 
     /**
      * @var string $lng
      *
-     * @ORM\Column(name="lng", type="decimal", scale=32, nullable=true)
+     * @ORM\Column(name="lng", type="decimal", precision=26, scale=4, nullable=true)
      */
     private $lng;      
     
@@ -107,13 +107,6 @@ class College {
      * @ORM\Column(name="is_active", type="boolean", options={"default"=true})
      */
     private $isActive;    
-
-    /**
-     * @var text $isBlocked
-     *
-     * @ORM\Column(name="is_blocked", type="boolean",  nullable=false, options={"default"=false})
-     */
-    private $isBlocked;
 
     /**
      * @ORM\Column(type="datetime")
